@@ -36,12 +36,15 @@
 
         <!-- Form Styling to match image_c9c5b7.png -->
         <style>
-            .modal-overlay {
+            #submit-record-modal {
                 position: fixed;
                 top: 0; left: 0; width: 100%; height: 100%;
                 background: rgba(0, 0, 0, 0.5);
-                display: flex; justify-content: center; align-items: center;
+                display: none; justify-content: center; align-items: center;
                 z-index: 9999;
+            }
+            #submit-record-modal:target {
+                display: flex;
             }
             .form-container {
                 background: #ffffff;
@@ -68,118 +71,110 @@
                 width: 100%; background: #7baaff; color: white; border: none; padding: 12px;
                 border-radius: 8px; font-weight: 700; font-family: inherit; font-size: 16px; cursor: pointer;
                 transition: background 0.2s;
+                text-align: center; display: block; text-decoration: none;
             }
             .btn-submit-form:hover { background: #6999ee; }
             .close-modal {
                 position: absolute; top: 15px; right: 20px; background: none; border: none;
-                font-size: 20px; cursor: pointer; color: #7e7e7e; font-weight: 700;
+                font-size: 24px; cursor: pointer; color: #7e7e7e; font-weight: 700; text-decoration: none;
             }
         </style>
     </head>
     <body id="app">
-        <!-- We add a simple data variable to track if the form window is open -->
-        <div v-scope="{ formOpen: false }">
-            
-            <header :class="{ dark: store.dark }">
-                <div class="logo">
-                    <h2>The Goy List</h2>
-                    <p>v1.0.0</p>
-                </div>
-                <nav class="nav">
-                    <router-link class="nav__tab" to="/">
-                        <span class="type-label-lg">List</span>
-                    </router-link>
-                    <router-link class="nav__tab" to="/leaderboard">
-                        <span class="type-label-lg">Leaderboard</span>
-                    </router-link>
-                    <router-link class="nav__tab" to="/roulette">
-                        <span class="type-label-lg">Roulette</span>
-                    </router-link>
-                    <div class="nav__actions">
-                        <button
-                            class="nav__icon"
-                            @click.prevent="store.toggleDark()"
-                        >
-                            <img
-                                :src="store.dark ? '/assets/light.svg' : '/assets/dark.svg'"
-                                alt=""
-                            />
-                        </button>
-                        <a class="nav__icon" href="#" target="_blank">
-                            <img src="/assets/discord.svg" alt="Discord Logo" />
-                        </a>
-                        
-                        <!-- Clicking this button now flips our window setting to true -->
-                        <button
-                            class="nav__cta type-label-lg"
-                            @click="formOpen = true"
-                            style="background: #ffffff; color: #000000; border: none; cursor: pointer;"
-                            >Submit Record</button
-                        >
-
-                        <a class="nav__cta type-label-lg" href="#/login">Login</a>
-                        <a class="nav__cta type-label-lg" href="#/register">Register</a>
-                    </div>
-                </nav>
-            </header>
-
-            <!-- THE SUBMIT RECORD POPUP FORM (Hidden by default, shows when formOpen is true) -->
-            <div class="modal-overlay" v-if="formOpen" @click.self="formOpen = false">
-                <div class="form-container">
-                    <button class="close-modal" @click="formOpen = false">×</button>
-                    <h2>Submit a Record</h2>
-                    
-                    <form @submit.prevent="alert('Record Submitted!')">
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" placeholder="Your username" required />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Level</label>
-                            <select required>
-                                <option value="" disabled selected>Select a level...</option>
-                                <option value="level1">Shitty Andromeda</option>
-                                <option value="level2">Shitty Acheron</option>
-                                <option value="level3">Shitty Nhelv</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Record Link</label>
-                            <input type="url" placeholder="https://..." required />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Raw Footage Link</label>
-                            <input type="url" placeholder="https://..." required />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Notes:</label>
-                            <textarea rows="3" placeholder="Any additional notes..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Platform</label>
-                            <div class="radio-group">
-                                <label class="radio-item">
-                                    <input type="radio" name="platform" value="mobile" /> Mobile
-                                </label>
-                                <label class="radio-item">
-                                    <input type="radio" name="platform" value="pc" checked /> PC
-                                </label>
-                            </div>
-                        </div>
-
-                        <p class="form-footer-text">Please read the Submission Guidelines before submitting.</p>
-
-                        <button type="submit" class="btn-submit-form">Submit</button>
-                    </form>
-                </div>
+        <header :class="{ dark: store.dark }">
+            <div class="logo">
+                <h2>The Goy List</h2>
+                <p>v1.0.0</p>
             </div>
+            <nav class="nav">
+                <router-link class="nav__tab" to="/">
+                    <span class="type-label-lg">List</span>
+                </router-link>
+                <router-link class="nav__tab" to="/leaderboard">
+                    <span class="type-label-lg">Leaderboard</span>
+                </router-link>
+                <router-link class="nav__tab" to="/roulette">
+                    <span class="type-label-lg">Roulette</span>
+                </router-link>
+                <div class="nav__actions">
+                    <button
+                        class="nav__icon"
+                        @click.prevent="store.toggleDark()"
+                    >
+                        <img
+                            :src="store.dark ? '/assets/light.svg' : '/assets/dark.svg'"
+                            alt=""
+                        />
+                    </button>
+                    <a class="nav__icon" href="#" target="_blank">
+                        <img src="/assets/discord.svg" alt="Discord Logo" />
+                    </a>
+                    
+                    <!-- Pointing the button to the HTML Target anchor link -->
+                    <a class="nav__cta type-label-lg" href="#submit-record-modal">Submit Record</a>
 
-            <router-view :class="{ dark: store.dark }"></router-view>
+                    <a class="nav__cta type-label-lg" href="#/login">Login</a>
+                    <a class="nav__cta type-label-lg" href="#/register">Register</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- THE SUBMIT RECORD POPUP FORM (Controlled purely via CSS to avoid breaking Vue) -->
+        <div id="submit-record-modal">
+            <div class="form-container">
+                <a class="close-modal" href="#=">×</a>
+                <h2>Submit a Record</h2>
+                
+                <form action="#" onsubmit="alert('Record Submitted!'); window.location.href='#='; return false;">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" placeholder="Your username" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Level</label>
+                        <select required>
+                            <option value="" disabled selected>Select a level...</option>
+                            <option value="level1">Shitty Andromeda</option>
+                            <option value="level2">Shitty Acheron</option>
+                            <option value="level3">Shitty Nhelv</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Record Link</label>
+                        <input type="url" placeholder="https://..." required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Raw Footage Link</label>
+                        <input type="url" placeholder="https://..." required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notes:</label>
+                        <textarea rows="3" placeholder="Any additional notes..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Platform</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="platform" value="mobile" /> Mobile
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="platform" value="pc" checked /> PC
+                            </label>
+                        </div>
+                    </div>
+
+                    <p class="form-footer-text">Please read the Submission Guidelines before submitting.</p>
+
+                    <button type="submit" class="btn-submit-form">Submit</button>
+                </form>
+            </div>
         </div>
+
+        <router-view :class="{ dark: store.dark }"></router-view>
     </body>
 </html>
