@@ -125,53 +125,53 @@
                 <a class="close-modal" href="#=">×</a>
                 <h2>Submit a Record</h2>
                 
-                <form action="#" onsubmit="alert('Record Submitted!'); window.location.href='#='; return false;">
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" placeholder="Your username" required />
-                    </div>
+                <form action="https://formspree.io/f/xrevpbql" method="POST">
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Your username" required />
+    </div>
 
-                    <div class="form-group">
-                        <label>Level</label>
-                        <select required>
-                            <option value="" disabled selected>Select a level...</option>
-                            <option value="level1">Shitty Andromeda</option>
-                            <option value="level2">Shitty Acheron</option>
-                            <option value="level3">Shitty Nhelv</option>
-                        </select>
-                    </div>
+    <div class="form-group">
+        <label>Level</label>
+        <select name="level" required>
+            <option value="" disabled selected>Select a level...</option>
+            <option value="Shitty Andromeda">Shitty Andromeda</option>
+            <option value="Shitty Acheron">Shitty Acheron</option>
+            <option value="Shitty Nhelv">Shitty Nhelv</option>
+        </select>
+    </div>
 
-                    <div class="form-group">
-                        <label>Record Link</label>
-                        <input type="url" placeholder="https://..." required />
-                    </div>
+    <div class="form-group">
+        <label>Record Link</label>
+        <input type="url" name="record_link" placeholder="https://..." required />
+    </div>
 
-                    <div class="form-group">
-                        <label>Raw Footage Link</label>
-                        <input type="url" placeholder="https://..." required />
-                    </div>
+    <div class="form-group">
+        <label>Raw Footage Link</label>
+        <input type="url" name="raw_footage_link" placeholder="https://..." required />
+    </div>
 
-                    <div class="form-group">
-                        <label>Notes:</label>
-                        <textarea rows="3" placeholder="Any additional notes..."></textarea>
-                    </div>
+    <div class="form-group">
+        <label>Notes:</label>
+        <textarea name="notes" rows="3" placeholder="Any additional notes..."></textarea>
+    </div>
 
-                    <div class="form-group">
-                        <label>Platform</label>
-                        <div class="radio-group">
-                            <label class="radio-item">
-                                <input type="radio" name="platform" value="mobile" /> Mobile
-                            </label>
-                            <label class="radio-item">
-                                <input type="radio" name="platform" value="pc" checked /> PC
-                            </label>
-                        </div>
-                    </div>
+    <div class="form-group">
+        <label>Platform</label>
+        <div class="radio-group">
+            <label class="radio-item">
+                <input type="radio" name="platform" value="Mobile" /> Mobile
+            </label>
+            <label class="radio-item">
+                <input type="radio" name="platform" value="PC" checked /> PC
+            </label>
+        </div>
+    </div>
 
-                    <p class="form-footer-text">Please read the Submission Guidelines before submitting.</p>
+    <p class="form-footer-text">Please read the Submission Guidelines before submitting.</p>
 
-                    <button type="submit" class="btn-submit-form">Submit</button>
-                </form>
+    <button type="submit" class="btn-submit-form">Submit</button>
+</form>
             </div>
         </div>
 
