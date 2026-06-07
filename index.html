@@ -23,83 +23,39 @@
         <script type="module" src="/js/main.js"></script>
 
         <style>
-            /* Universal Modal Overlay Styles */
-            #submit-record-modal, #login-modal, #register-modal {
+            /* Modal Overlay Styles setup for dynamic display classes */
+            .custom-modal-overlay {
                 position: fixed;
                 top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, 0, 0, 0.6);
                 display: none; justify-content: center; align-items: center;
-                z-index: 9999;
+                z-index: 99999;
             }
-            #submit-record-modal:target, #login-modal:target, #register-modal:target {
+            /* When the active class is forced via JS, show the popup window instantly */
+            .custom-modal-overlay.is-active {
                 display: flex;
             }
             .form-container {
                 background: #ffffff;
-                padding: 30px;
-                border-radius: 16px;
-                width: 420px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                padding: 40px 30px;
+                border-radius: 20px;
+                width: 400px;
+                box-shadow: 0 12px 30px rgba(0,0,0,0.15);
                 font-family: 'Lexend Deca', sans-serif;
                 color: #000000;
                 position: relative;
+                text-align: center;
             }
-            .form-container h2 { text-align: center; margin-bottom: 25px; font-size: 28px; font-weight: 700; }
+            .form-container h2 { text-align: center; margin-bottom: 30px; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
             .form-group { margin-bottom: 20px; }
-            .form-group label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 14px; }
             .form-group input, .form-group select, .form-group textarea {
-                width: 100%; padding: 12px; border: 1px solid #dcdcdc; border-radius: 8px;
-                font-family: inherit; font-size: 14px; background: #ffffff; box-sizing: border-box;
-                transition: border 0.2s;
+                width: 100%; padding: 14px; border: 1px solid #e0e0e0; border-radius: 10px;
+                font-family: inherit; font-size: 15px; background: #ffffff; box-sizing: border-box;
+                color: #000000;
             }
-            .form-group input:focus { border-color: #0066ff; outline: none; }
-            .radio-group { display: flex; gap: 20px; margin-top: 5px; }
-            .radio-item { display: flex; align-items: center; gap: 5px; font-weight: 700; cursor: pointer; }
-            .form-footer-text { font-size: 12px; font-weight: 700; text-align: center; margin: 20px 0; }
+            .form-group input::placeholder { color: #a0a0a0; }
+            .form-group label { display: block; text-align: left; font-weight: 700; margin-bottom: 8px; font-size: 14px; }
             
-            /* Styled Action Button to match image_6824e1.png & image_682787.png */
+            /* High Quality Blue Buttons matching reference screens */
             .btn-blue-submit {
-                width: 100%; background: #0066ff; color: white; border: none; padding: 14px;
-                border-radius: 8px; font-weight: 700; font-family: inherit; font-size: 16px; cursor: pointer;
-                box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3); transition: background 0.2s;
-                text-align: center; display: block; text-decoration: none;
-            }
-            .btn-blue-submit:hover { background: #0052cc; }
-            .close-modal {
-                position: absolute; top: 15px; right: 20px; background: none; border: none;
-                font-size: 24px; cursor: pointer; color: #7e7e7e; font-weight: 700; text-decoration: none;
-            }
-        </style>
-    </head>
-    <body id="app">
-        <header :class="{ dark: store.dark }">
-            <div class="logo">
-                <h2>The Goy List</h2>
-                <p>v1.0.0</p>
-            </div>
-            <nav class="nav">
-                <router-link class="nav__tab" to="/">
-                    <span class="type-label-lg">List</span>
-                </router-link>
-                <router-link class="nav__tab" to="/leaderboard">
-                    <span class="type-label-lg">Leaderboard</span>
-                </router-link>
-                <router-link class="nav__tab" to="/roulette">
-                    <span class="type-label-lg">Roulette</span>
-                </router-link>
-                <div class="nav__actions">
-                    <button class="nav__icon" @click.prevent="store.toggleDark()">
-                        <img :src="store.dark ? '/assets/light.svg' : '/assets/dark.svg'" alt="" />
-                    </button>
-                    <a class="nav__icon" href="#" target="_blank">
-                        <img src="/assets/discord.svg" alt="Discord Logo" />
-                    </a>
-                    
-                    <a class="nav__cta type-label-lg" href="#submit-record-modal">Submit Record</a>
-                    <a class="nav__cta type-label-lg" href="#login-modal">Login</a>
-                    <a class="nav__cta type-label-lg" href="#register-modal">Register</a>
-                </div>
-            </nav>
-        </header>
-
-        <div id="submit-record-modal">
+                width: 100%; background: #0066ff; color: white; border: none;
