@@ -24,12 +24,12 @@
         <script type="module" src="/js/main.js"></script>
 
         <style>
-            /* Clean overlay styling that uses standard class toggles */
+            /* Custom Modal Styles matching your reference screenshots */
             .custom-modal-overlay {
                 position: fixed;
                 top: 0; left: 0; width: 100%; height: 100%;
                 background: rgba(0, 0, 0, 0.6);
-                display: none; justify-content: center; align-items: center;
+                display: flex; justify-content: center; align-items: center;
                 z-index: 99999;
             }
             .form-container {
@@ -52,3 +52,26 @@
             }
             .form-group input::placeholder { color: #a0a0a0; }
             .form-group label { display: block; text-align: left; font-weight: 700; margin-bottom: 8px; font-size: 14px; }
+            
+            .btn-blue-submit {
+                width: 100%; background: #0066ff; color: white; border: none; padding: 15px;
+                border-radius: 10px; font-weight: 700; font-family: inherit; font-size: 16px; cursor: pointer;
+                transition: background 0.2s, transform 0.1s;
+                text-align: center; display: block; text-decoration: none; margin-top: 10px;
+            }
+            .btn-blue-submit:hover { background: #0052cc; }
+            .btn-blue-submit:active { transform: scale(0.98); }
+            .close-modal {
+                position: absolute; top: 15px; right: 20px; background: none; border: none;
+                font-size: 28px; cursor: pointer; color: #a0a0a0; font-weight: 500; text-decoration: none;
+                line-height: 1;
+            }
+            .close-modal:hover { color: #000000; }
+            .form-footer-text { font-size: 12px; font-weight: 500; color: #666; text-align: center; margin: 20px 0 0 0; }
+        </style>
+    </head>
+    <body id="app">
+        
+        <header :class="{ dark: store.dark }">
+            <div class="logo">
+                <h2>
