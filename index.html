@@ -102,20 +102,20 @@
             <div class="form-container">
                 <button class="close-modal" @click="store.activeModal = ''">×</button>
                 <h2 style="font-size: 26px;">Submit a Record</h2>
-                <form action="#" onsubmit="alert('Record Submitting via Formspree!'); return false;">
-                    <div class="form-group"><label>Username</label><input type="text" placeholder="Your username" required /></div>
+                <form action="https://formspree.io/f/xrevpbql" method="POST">
+                    <div class="form-group"><label>Username</label><input type="text" name="username" placeholder="Your username" required /></div>
                     <div class="form-group">
                         <label>Level</label>
-                        <select required>
+                        <select name="level" required>
                             <option value="" disabled selected>Select a level...</option>
                             <option value="level1">Shitty Andromeda</option>
                             <option value="level2">Shitty Acheron</option>
                             <option value="level3">Shitty Nhelv</option>
                         </select>
                     </div>
-                    <div class="form-group"><label>Record Link</label><input type="url" placeholder="https://..." required /></div>
-                    <div class="form-group"><label>Raw Footage Link</label><input type="url" placeholder="https://..." required /></div>
-                    <div class="form-group"><label>Notes:</label><textarea rows="3" placeholder="Any additional notes..."></textarea></div>
+                    <div class="form-group"><label>Record Link</label><input type="url" name="record_link" placeholder="https://..." required /></div>
+                    <div class="form-group"><label>Raw Footage Link</label><input type="url" name="footage_link" placeholder="https://..." required /></div>
+                    <div class="form-group"><label>Notes:</label><textarea name="notes" rows="3" placeholder="Any additional notes..."></textarea></div>
                     <button type="submit" class="btn-blue-submit" style="background: #7baaff;">Submit</button>
                 </form>
             </div>
